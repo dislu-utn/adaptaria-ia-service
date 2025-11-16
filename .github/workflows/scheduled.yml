@@ -1,0 +1,19 @@
+name: Scheduled Job
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # every hour
+  workflow_dispatch:      # allow manual trigger
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: python main.py
+      - run: python audio.py
+
