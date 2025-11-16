@@ -1,9 +1,7 @@
 name: Scheduled Job
 
 on:
-  schedule:
-    - cron: "*/10 * * * *"   # every hour
-  workflow_dispatch:      # allow manual trigger
+    workflow_dispatch:      # allow manual trigger
 
 jobs:
   run-script:
