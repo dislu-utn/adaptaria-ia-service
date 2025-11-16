@@ -42,7 +42,7 @@ def connect_to_mongodb():
     return client
 
 def get_raw_content(client):
-    db = client['adaptaria']
+    db = client['test']
     collection = db['contents']
     status = ["PENDING", "FAILED", "RETRY"]
     result = collection.find_one({"status": {"$in": status}}, {"_id": 1, "key": 1, "status": 1}, sort=[('updatedAt', 1)])
@@ -66,7 +66,7 @@ def fetch_file_from_s3(key):
     return response
 
 def upload_generated_content(client, id, final_summary, markmap, game, audio_texts):
-    db = client['adaptaria']
+    db = client['test']
     collection = db['contents']
     
     try: 

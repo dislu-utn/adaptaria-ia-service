@@ -1,6 +1,6 @@
 langchain_experimental
 langchain_community 
-langchain 
+langchain
 ragas 
 faiss-cpu 
 tiktoken 

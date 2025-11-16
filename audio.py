@@ -35,7 +35,7 @@ def upload_to_s3(buffer):
     response = s3_client.put_object(Bucket=os.getenv("PUBLIC_BUCKET"), Key=key, Body=buffer, ContentType="audio/mpeg")
     return f'https://{os.getenv("PUBLIC_BUCKET")}.s3.amazonaws.com/{key}'
 
-db = client['adaptaria']
+db = client['test']
 collection = db['contents']
 status = ["PENDING_AUDIO", "FAILED_AUDIO"]
 result = collection.find_one({"status": {"$in": status}}, {"_id": 1, "generated": 1, "status": 1}, sort=[('updatedAt', 1)])
