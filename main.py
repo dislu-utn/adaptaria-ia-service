@@ -74,7 +74,7 @@ def upload_generated_content(client, id, final_summary, markmap, game, audio_tex
         audio_texts = json.loads(audio_texts) ## Only for validating
         for audio_text in audio_texts:
             if len(audio_text) > 4096:
-                raise Exception("Audio text too long")
+                audio_text = audio_text[:4095]
         audio_texts = [{"text": audio_text, "audioUrl": ""} for audio_text in audio_texts]
         collection.update_one({"_id": id}, {"$set": {"status": "PENDING_AUDIO", "generated": [{ "type": "SUMMARY", "content": final_summary, "approved": False }, { "type": "MIND_MAP", "content": markmap, "approved": False }, { "type": "GAMIFICATION", "content": game, "approved": False}, { "type": "SPEECH", "content": audio_texts, "approved": False }]}})
         print("Content updated successfully")
